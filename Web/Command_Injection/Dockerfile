@@ -7,6 +7,6 @@ RUN apt-get update && apt-get install -y iputils-ping
 COPY html/ /var/www/html/
 
 # 放置 Flag
-echo "CTF{6an9erous_c0mman6_1nject10n}" > /var/www/flag.txt
+RUN echo "CTF{6an9erous_c0mman6_1nject10n}" > /var/www/flag.txt
 
 EXPOSE 80
