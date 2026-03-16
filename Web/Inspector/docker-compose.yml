@@ -1,0 +1,9 @@
+services:
+  my-website:
+    image: nginx:alpine
+    container_name: custom-nginx
+    ports:
+      - "8004:80"  # 外部用 8080 埠訪問
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro  # 把本地檔案映射進去
+    restart: unless-stopped

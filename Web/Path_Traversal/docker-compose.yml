@@ -1,0 +1,18 @@
+services:
+  ctf-challenge:
+    image: node:alpine
+    container_name: node-ctf
+    working_dir: /app
+    ports:
+      - "8005:3000" # 外部用 3001 埠訪問，避免跟 Homepage 衝突
+    volumes:
+      - .:/app    # 把當前目錄掛載進去 (包含 index.js)
+    # 手動執行 Dockerfile 裡的那些指令
+    command: >
+      sh -c "mkdir -p public && 
+             echo 'Fake PNG Data' > public/avatar1.png && 
+             echo 'Fake PNG Data' > public/avatar2.png && 
+             echo '恭喜！你成功讀取了公開區域的歡迎文件。' > public/welcome.txt && 
+             echo 'CTF{B3autifu1_Fr0ntend_But_Uns3cure_B4ckend}' > /flag.txt && 
+             node index.js"
+    restart: unless-stopped
